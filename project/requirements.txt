@@ -1,0 +1,3 @@
+Django==6.0
+gunicorn==12.0.0
+Pillow==21.2.0
