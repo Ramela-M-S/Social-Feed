@@ -1,0 +1,120 @@
+{% extends "feed/base.html" %}
+{% block title %}Create Post{% endblock %}
+{% block content %}
+
+<style>
+.create-container {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-card {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.create-header {
+    padding: 16px 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+}
+
+.image-drop {
+    height: 280px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.image-drop span {
+    color: #888;
+}
+
+.image-drop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+#create-input {
+    display: none;
+}
+
+.create-body {
+    padding: 20px;
+}
+
+.create-body input,
+.create-body textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.post-btn {
+    width: 100%;
+    padding: 12px;
+    font-weight: 600;
+}
+</style>
+
+<div class="create-container">
+    <div class="create-card">
+
+        <div class="create-header">Create New Post</div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- IMAGE UPLOAD -->
+            <label class="image-drop" for="create-input">
+                <span id="dropText">Drag & drop image or click to upload</span>
+                <img id="preview">
+            </label>
+
+            <!-- HIDDEN FILE INPUT -->
+            <input type="file" id="create-input" name="post_image" accept="image/*">
+
+            <!-- BODY -->
+            <div class="create-body">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+
+                {{ form.desc.label_tag }}
+                {{ form.desc }}
+
+                <button type="submit" class="btn btn-primary post-btn">
+                    Post
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+const input = document.getElementById("create-input");
+const preview = document.getElementById("preview");
+const text = document.getElementById("dropText");
+
+input.addEventListener("change", () => {
+    const file = input.files[0];
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+        text.style.display = "none";
+    }
+});
+</script>
+
+{% endblock %}

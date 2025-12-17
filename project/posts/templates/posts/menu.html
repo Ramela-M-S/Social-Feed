@@ -1,0 +1,103 @@
+{% extends "feed/base.html" %}
+
+{% block title %}Menu | Social Feed{% endblock %}
+
+{% block content %}
+<style>
+    .menu-container {
+        min-height: calc(100vh - 60px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-card {
+        background: white;
+         padding: 50px 60px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 1100px;
+        text-align: center;
+    }
+    .menu-card {
+    min-height: 600px;  /* adjust */
+}
+
+    .menu-card h1 {
+        font-weight: 800;
+        margin-bottom: 30px;
+    }
+
+    .menu-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+
+    .option-card {
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid #eee;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .option-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .option-card span {
+        font-size: 48px;
+        color: #0d6efd;
+    }
+
+    .option-card h4 {
+        margin-top: 15px;
+        font-weight: 600;
+    }
+
+    .option-card p {
+        color: #666;
+        font-size: 0.95rem;
+    }
+</style>
+
+<div class="menu-container">
+    <div class="menu-card">
+        <h1>Welcome, {{ user.username }}</h1>
+        <p class="mb-4 text-muted">Choose what you want to do</p>
+
+        <div class="menu-options">
+            <!-- Create Post -->
+            <a href="{% url "create" %}" class="text-decoration-none text-dark">
+                <div class="option-card">
+                    <span class="material-icons">add_circle</span>
+                    <h4>Create Post</h4>
+                    <p>Add a new post with image & description</p>
+                </div>
+            </a>
+
+            <!-- My Posts -->
+            <a href="{% url "my_posts" %}" class="text-decoration-none text-dark">
+                <div class="option-card">
+                    <span class="material-icons">person</span>
+                    <h4>My Posts</h4>
+                    <p>View posts you have created</p>
+                </div>
+            </a>
+
+            <!-- All Posts -->
+            <a href="{% url "all_posts" %}" class="text-decoration-none text-dark">
+                <div class="option-card">
+                    <span class="material-icons">public</span>
+                    <h4>All Posts</h4>
+                    <p>Explore posts from everyone</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
