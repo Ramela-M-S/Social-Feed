@@ -4,65 +4,131 @@
 
 {% block content %}
 <style>
-    .menu-container {
-        min-height: calc(100vh - 60px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .menu-card {
-        background: white;
-         padding: 50px 60px;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        width: 100%;
-        max-width: 1100px;
-        text-align: center;
-    }
-    .menu-card {
-    min-height: 600px;  /* adjust */
+:root {
+    --pinterest-red: #E60023;
+    --soft-gold: #F5D76E;
+    --gold-glow: rgba(245,215,110,0.75);
 }
 
-    .menu-card h1 {
-        font-weight: 800;
-        margin-bottom: 30px;
-    }
+/* ===== CONTAINER ===== */
+.menu-container {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .menu-options {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-    }
+/* ===== MENU CARD ===== */
+.menu-card {
+    background: #ffffff;
+    padding: 55px 65px;
+    border-radius: 26px;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 600px;
+    text-align: center;
 
+    border: 2px solid var(--pinterest-red);
+    box-shadow:
+        0 0 25px rgba(230,0,35,0.35),
+        0 0 40px rgba(245,215,110,0.35);
+}
 
-    .option-card {
-        padding: 30px;
-        border-radius: 15px;
-        border: 1px solid #eee;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-    }
+/* ===== TITLE ===== */
+.menu-card h1 {
+    font-weight: 900;
+    font-size: 2.6rem;
+    color: var(--pinterest-red);
+    letter-spacing: 1.2px;
 
-    .option-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
+    /* ALWAYS GLITTER */
+    text-shadow:
+        0 0 8px var(--soft-gold),
+        0 0 18px var(--gold-glow),
+        0 0 30px rgba(245,215,110,0.6);
 
-    .option-card span {
-        font-size: 48px;
-        color: #0d6efd;
-    }
+    animation: titleGlow 3s infinite alternate;
+}
 
-    .option-card h4 {
-        margin-top: 15px;
-        font-weight: 600;
-    }
+.menu-card p {
+    color: #555;
+}
 
-    .option-card p {
-        color: #666;
-        font-size: 0.95rem;
+/* ===== GRID ===== */
+.menu-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 26px;
+}
+
+/* ===== OPTION CARD ===== */
+.option-card {
+    padding: 36px 28px;
+    border-radius: 20px;
+    cursor: pointer;
+
+    background: #ffffff;
+    border: 2px solid var(--pinterest-red);
+    transition: all 0.35s ease;
+
+    box-shadow:
+        0 0 15px rgba(230,0,35,0.2),
+        0 0 22px rgba(245,215,110,0.25);
+}
+
+/* HOVER GLITTER */
+.option-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow:
+        0 0 22px var(--soft-gold),
+        0 0 45px rgba(230,0,35,0.7);
+}
+
+/* ===== ICON ===== */
+.option-card span {
+    font-size: 52px;
+    color: var(--pinterest-red);
+
+    /* ALWAYS GOLD GLITTER */
+    text-shadow:
+        0 0 6px var(--soft-gold),
+        0 0 14px var(--gold-glow);
+
+    transition: all 0.35s ease;
+}
+
+.option-card:hover span {
+    text-shadow:
+        0 0 10px var(--soft-gold),
+        0 0 26px var(--gold-glow);
+}
+
+/* ===== OPTION TITLE ===== */
+.option-card h4 {
+    margin-top: 18px;
+    font-weight: 700;
+    color: var(--pinterest-red);
+}
+
+/* ===== DESCRIPTION ===== */
+.option-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes titleGlow {
+    from {
+        text-shadow:
+            0 0 8px rgba(245,215,110,0.6),
+            0 0 18px rgba(245,215,110,0.5);
     }
+    to {
+        text-shadow:
+            0 0 14px rgba(245,215,110,0.85),
+            0 0 30px rgba(245,215,110,0.75);
+    }
+}
 </style>
 
 <div class="menu-container">
