@@ -27,9 +27,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com"
+]
 
 # Allowed Hosts
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
