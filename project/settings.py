@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 DEBUG  = os.environ.get("DEBUG") == "True"
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com"
+     "https://social-feed-1.onrender.com"
 ]
 
 # Allowed Hosts
