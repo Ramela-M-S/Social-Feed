@@ -26,13 +26,19 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = True
+DEBUG  = os.environ.get("DEBUG") == "True"
+
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com"
 ]
 
 # Allowed Hosts
-ALLOWED_HOSTS = ["social-feed-1.onrender.com","127.0.0.1", "localhost"]
+ALLOWED_HOSTS =  os.environ.get(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+).split(",")
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,6 +53,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'posts',
+    'cloudinary',
+    'cloudinary_storage',
+
 ]
 
 MIDDLEWARE = [
