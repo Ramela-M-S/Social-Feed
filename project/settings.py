@@ -26,13 +26,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = False
+DEBUG = True
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com"
 ]
 
 # Allowed Hosts
-ALLOWED_HOSTS = ["social-feed-1.onrender.com"]
+ALLOWED_HOSTS = ["social-feed-1.onrender.com","127.0.0.1", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -141,8 +141,6 @@ CRISPY_TEMPLATE_PACK          = "bootstrap4"
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/menu/'
 LOGOUT_REDIRECT_URL = '/'
-MEDIA_URL = 'https://your-render-static-site.onrender.com/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 
