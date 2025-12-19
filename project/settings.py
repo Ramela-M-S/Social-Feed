@@ -26,11 +26,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG  = os.environ.get("DEBUG") == "True"
+DEBUG  = os.environ.get("DEBUG", "False") == "True"
 
 CSRF_TRUSTED_ORIGINS = [
      "https://social-feed-1.onrender.com"
 ]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 
 # Allowed Hosts
 ALLOWED_HOSTS =  os.environ.get(
