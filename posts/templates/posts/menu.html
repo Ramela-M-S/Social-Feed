@@ -12,22 +12,22 @@
 
 /* ===== CONTAINER ===== */
 .menu-container {
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 15px; /* Added padding for mobile edges */
 }
 
 /* ===== MENU CARD ===== */
 .menu-card {
     background: #ffffff;
-    padding: 55px 65px;
+    padding: 40px 30px; /* Reduced from 55px 65px for better mobile fit */
     border-radius: 26px;
     width: 100%;
     max-width: 1100px;
-    min-height: 600px;
+    /* Removed min-height: 600px to allow content to dictate height on mobile */
     text-align: center;
-
     border: 2px solid var(--pinterest-red);
     box-shadow:
         0 0 25px rgba(230,0,35,0.35),
@@ -37,108 +37,78 @@
 /* ===== TITLE ===== */
 .menu-card h1 {
     font-weight: 900;
-    font-size: 2.6rem;
+    font-size: 2.2rem; /* Scaled down slightly for better wrapping */
     color: var(--pinterest-red);
     letter-spacing: 1.2px;
-
-    /* ALWAYS GLITTER */
     text-shadow:
         0 0 8px var(--soft-gold),
-        0 0 18px var(--gold-glow),
-        0 0 30px rgba(245,215,110,0.6);
-
+        0 0 18px var(--gold-glow);
     animation: titleGlow 3s infinite alternate;
-}
-
-.menu-card p {
-    color: #555;
 }
 
 /* ===== GRID ===== */
 .menu-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 26px;
+    /* auto-fit handles the responsiveness, we just adjust the min-size */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
 }
 
 /* ===== OPTION CARD ===== */
 .option-card {
-    padding: 36px 28px;
+    padding: 30px 20px;
     border-radius: 20px;
     cursor: pointer;
-
     background: #ffffff;
     border: 2px solid var(--pinterest-red);
     transition: all 0.35s ease;
-
+    height: 100%; /* Ensures all cards in a row are the same height */
     box-shadow:
-        0 0 15px rgba(230,0,35,0.2),
-        0 0 22px rgba(245,215,110,0.25);
+        0 0 15px rgba(230,0,35,0.1),
+        0 0 22px rgba(245,215,110,0.15);
 }
 
-/* HOVER GLITTER */
 .option-card:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-8px);
     box-shadow:
         0 0 22px var(--soft-gold),
-        0 0 45px rgba(230,0,35,0.7);
+        0 0 45px rgba(230,0,35,0.5);
 }
 
 /* ===== ICON ===== */
 .option-card span {
-    font-size: 52px;
+    font-size: 48px;
     color: var(--pinterest-red);
-
-    /* ALWAYS GOLD GLITTER */
-    text-shadow:
-        0 0 6px var(--soft-gold),
-        0 0 14px var(--gold-glow);
-
-    transition: all 0.35s ease;
+    text-shadow: 0 0 6px var(--soft-gold), 0 0 14px var(--gold-glow);
 }
 
-.option-card:hover span {
-    text-shadow:
-        0 0 10px var(--soft-gold),
-        0 0 26px var(--gold-glow);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu-card {
+        padding: 30px 20px;
+    }
+    .menu-card h1 {
+        font-size: 1.8rem;
+    }
+    .menu-options {
+        grid-template-columns: 1fr; /* Stack cards on top of each other on mobile */
+    }
 }
 
-/* ===== OPTION TITLE ===== */
-.option-card h4 {
-    margin-top: 18px;
-    font-weight: 700;
-    color: var(--pinterest-red);
-}
-
-/* ===== DESCRIPTION ===== */
-.option-card p {
-    color: #666;
-    font-size: 0.95rem;
-}
-
-/* ===== ANIMATION ===== */
 @keyframes titleGlow {
-    from {
-        text-shadow:
-            0 0 8px rgba(245,215,110,0.6),
-            0 0 18px rgba(245,215,110,0.5);
-    }
-    to {
-        text-shadow:
-            0 0 14px rgba(245,215,110,0.85),
-            0 0 30px rgba(245,215,110,0.75);
-    }
+    from { text-shadow: 0 0 8px rgba(245,215,110,0.6), 0 0 18px rgba(245,215,110,0.5); }
+    to { text-shadow: 0 0 14px rgba(245,215,110,0.85), 0 0 30px rgba(245,215,110,0.75); }
 }
 </style>
 
 <div class="menu-container">
     <div class="menu-card">
         <h1>Welcome, {{ user.username }}</h1>
-        <p class="mb-4 text-muted">Choose what you want to do</p>
+        <p class="mb-2 text-muted">Choose what you want to do</p>
 
         <div class="menu-options">
-            <!-- Create Post -->
-            <a href="{% url "create" %}" class="text-decoration-none text-dark">
+            <a href="{% url 'create' %}" class="text-decoration-none text-dark">
                 <div class="option-card">
                     <span class="material-icons">add_circle</span>
                     <h4>Create Post</h4>
@@ -146,8 +116,7 @@
                 </div>
             </a>
 
-            <!-- My Posts -->
-            <a href="{% url "my_posts" %}" class="text-decoration-none text-dark">
+            <a href="{% url 'my_posts' %}" class="text-decoration-none text-dark">
                 <div class="option-card">
                     <span class="material-icons">person</span>
                     <h4>My Posts</h4>
@@ -155,8 +124,7 @@
                 </div>
             </a>
 
-            <!-- All Posts -->
-            <a href="{% url "all_posts" %}" class="text-decoration-none text-dark">
+            <a href="{% url 'all_posts' %}" class="text-decoration-none text-dark">
                 <div class="option-card">
                     <span class="material-icons">public</span>
                     <h4>All Posts</h4>

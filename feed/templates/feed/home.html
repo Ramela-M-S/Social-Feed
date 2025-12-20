@@ -4,15 +4,24 @@
 
 {% block content %}
 <style>
+/* Center the card container */
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+    padding: 20px;
+}
+
 .home-card {
     background: #ffffff;
-    padding: 68px 48px;
+    padding: 60px 40px;
     border-radius: 28px;
     box-shadow: 0 20px 50px rgba(230,0,35,0.35);
     text-align: center;
-    width: 90%;
+    width: 100%; /* Default to full width for small screens */
     max-width: 640px;
-    margin-top: 90px;
+    margin-top: 50px; /* Reduced from 90px for better mobile view */
     transition: all 0.35s ease;
 }
 
@@ -25,46 +34,26 @@
 
 /* ===== TITLE ===== */
 .home-card h1 {
-    font-size: 2.9rem;
+    font-size: 2.5rem; /* Slightly smaller for mobile by default */
     font-weight: 900;
     color: #E60023;
-
-    /* ALWAYS GLITTER */
     text-shadow:
         0 0 8px rgba(245,215,110,0.7),
-        0 0 18px rgba(245,215,110,0.6),
-        0 0 30px rgba(245,215,110,0.5);
-
-    letter-spacing: 1.4px;
+        0 0 18px rgba(245,215,110,0.6);
+    letter-spacing: 1px;
     animation: titleGlow 3s infinite alternate;
+    line-height: 1.2;
 }
 
-/* EXTRA SHINE ON HOVER */
-.home-card h1:hover {
-    text-shadow:
-        0 0 12px rgba(245,215,110,0.9),
-        0 0 30px rgba(245,215,110,0.8),
-        0 0 50px rgba(245,215,110,0.7);
-}
-
-/* TITLE GLITTER */
 @keyframes titleGlow {
-    from {
-        text-shadow:
-            0 0 8px rgba(245,215,110,0.6),
-            0 0 18px rgba(245,215,110,0.5);
-    }
-    to {
-        text-shadow:
-            0 0 14px rgba(245,215,110,0.8),
-            0 0 30px rgba(245,215,110,0.7);
-    }
+    from { text-shadow: 0 0 8px rgba(245,215,110,0.6), 0 0 18px rgba(245,215,110,0.5); }
+    to { text-shadow: 0 0 14px rgba(245,215,110,0.8), 0 0 30px rgba(245,215,110,0.7); }
 }
 
 /* ===== TEXT ===== */
 .home-card p {
     color: #4A4A4A;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-bottom: 22px;
 }
 
@@ -72,40 +61,61 @@
 .home-card .btn-primary {
     background: var(--pinterest-red) !important;
     border: none !important;
-    padding: 14px 48px;
+    padding: 12px 36px;
     border-radius: 50px;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: #fff !important;
+    display: inline-block;
     transition: all 0.3s ease;
-    transform: scale(1.06);
-    box-shadow:
-        0 0 18px var(--soft-gold),
-        0 0 40px rgba(230,0,35,0.8);
-
+    box-shadow: 0 0 18px var(--soft-gold), 0 0 30px rgba(230,0,35,0.6);
 }
 
 .home-card .btn-primary:hover {
-    transform: scale(1.06);
-    box-shadow:
-        0 0 18px var(--soft-gold),
-        0 0 40px rgba(230,0,35,0.8);
+    transform: scale(1.05);
+}
+
+/* =========================================
+   MEDIA QUERIES (Responsiveness)
+   ========================================= */
+
+/* Tablets and small desktops */
+@media (max-width: 768px) {
+    .home-card {
+        padding: 40px 25px;
+        margin-top: 30px;
+    }
+    .home-card h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    .home-card {
+        padding: 30px 15px;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
+    .home-card h1 {
+        font-size: 1.7rem;
+    }
+    .home-card p {
+        font-size: 1rem;
+    }
+    .home-card .btn-primary {
+        padding: 10px 28px;
+        width: 100%; /* Button goes full width on very small phones */
+    }
 }
 </style>
 
-
-
-
-
-<!-- Overlay -->
-<div class="overlay"></div>
-
-<!-- Centered card -->
-<div class="d-flex justify-content-center align-items-start" style="min-height: calc(100vh - 60px);">
+<div class="home-container">
     <div class="home-card">
         <h1>SOCIAL FEED WEBSITE</h1>
         <p>Welcome! Explore posts, create your own posts, and share your updates.</p>
-        <p class="tech-used">Built with Django</p>
+        <p class="tech-used"><strong>Built with Django</strong></p>
         <a href="{% url 'menu' %}" class="btn btn-primary">Show Posts</a>
     </div>
 </div>
+
 {% endblock %}
