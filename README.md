@@ -15,20 +15,27 @@ Enabled real-time user interaction through a cloud-backed Django social platform
 
 ## 📸 Screenshots
 
-### 📰 All Posts Page
-![All Posts](screenshots/All_Posts.png)
-
 ### 🏠 Home Page
 ![Home Page](screenshots/Home_Page.png)
+
+### 📝 Register Page
+![Register Page](screenshots/Register_Page.png)
+
 
 ### 🔐 Login Page
 ![Login Page](screenshots/Login_Page.png)
 
+
+
 ### 📋 Menu Page
 ![Menu Page](screenshots/Menu_Page.png)
 
-### 📝 Register Page
-![Register Page](screenshots/Register_Page.png)
+
+
+### 📰 All Posts Page
+![All Posts](screenshots/All_Posts.png)
+
+
 
 
 ## ✨ Features
